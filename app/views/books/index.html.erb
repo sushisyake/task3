@@ -4,8 +4,8 @@
     <%= image_tag 'sample-author1.jpg' %>
     <%= book.user.name %>
   <% end %>
-  <p>User：<%= image_tag book.user.get_profile_image(100,100) %></p>
+  <p>投稿ユーザー：<%= image_tag book.user.get_profile_image(100,100) %></p>
   <p>Title= book.title %></p>
-  <p>Opinion：<%= book.body %></p>
+  <p>説明：<%= book.body %></p>
 </div>
 <% end %>
