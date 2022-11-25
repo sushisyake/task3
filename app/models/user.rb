@@ -6,19 +6,13 @@ class User < ApplicationRecord
          
   has_many :books, dependent: :destroy
   
-  validates :name, presence: true
-  
   validates :name,
-    length: { minimum: 2, maximum: 10 },
-    presence:true
+    length: { minimum: 2, maximum: 20 },
+    presence:true,
+    uniqueness: true
     
   validates :introduction,
-    length: { maximum: 200},
-    presence:true
-    
-  #   with_options on: [ :edit ] do
-  # validates :introduction, presence: true
-  # end
+    length: { maximum: 50}
   
   has_one_attached :profile_image
   

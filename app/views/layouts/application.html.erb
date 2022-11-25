@@ -6,50 +6,73 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <script src="https://kit.fontawesome.com/d247e19e1b.js" crossorigin="anonymous"></script>
     
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <h1 class="navbar-brand p-1" href="/">Bookers</h1>
+  <body class="d-flex flex-column vh-100" >
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark"  >
+        <div class="container" >
+          <h1 class="navbar-brand" > <%= link_to "Bookers" , root_path , class: 'text-light' %> </h1>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <div class="collapse navbar-collapse" id="navbarNavDropdown" >
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "Home", user_path(current_user.id), class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Users', new_book_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Books', user_path(current_user.id), class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
-            </li>
+              <li class="nav-item">
+                <%= link_to user_path(current_user.id), class: 'nav-link text-light' do %>
+                   <i class="fas fa-home" style="color: white;"></i>
+                   Home
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to users_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-users" style="color: white;"></i>
+                  Users
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to books_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-book-open" style="color: white;"></i>
+                  Books
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
+                <i class="fas fa-sign-out-alt" style="color: white;"></i>
+                Log out
+                <% end %>
+              </li>
             <% else %>
-            <li class="nav-item">
-              <%= link_to 'Home', new_user_registration_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Users', new_user_registration_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Books", new_user_registration_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Log in", new_user_session_path, class: 'nav-link text-dark' %>
-            </li>
-            
+              <li class="nav-item">
+                <%= link_to root_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-home" style="color: white;"></i>
+                  Home
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to about_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-link" style="color: white;"></i>
+                  About
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-user-plus" style="color: white;"></i>
+                  Sign up
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
+                  <i class="fas fa-sign-in-alt" style="color: white;"></i>
+                  Log in
+                <% end %>
+              </li>
             <% end %>
             </ul>
           </div>
@@ -57,28 +80,11 @@
       </nav>
     </header>
   <main>
-    <!--<p class="notice"><%= notice %></p>-->
-    <!--<p class="alert"><%= alert %></p>-->
-    <!--<p class="notice"><%= notice %><%= alert %></p>-->
-    <p id="notice"><%= notice %></p>
-      <h1>Posts</h1>
-      <div class="container"> 
-        <div class="row">
-          <div class="col-md-3" style="background-color: orange;">
-            <h2>サイドバー</h2>
-          </div>
-          <div class="col-md-8 offset-md-1">
-            <!--<table class="table table-striped">-->
-            <table class="table table-hover table-inverse">
-               <%= yield %>
-            </table>
-          </div>
-        </div><br>
-      <%#= link_to 'New Post', new_post_path %>
+      <%= yield %>
   </main>
     
     <footer>
-      <div class="container">
+      <div class="container my-4">
       	<div class="row">
         	<div class="mx-auto">
         		<p>CopyRight Infratop.inc</p>
